@@ -39,30 +39,38 @@
 
       return {
         contacto: {},
-        contactosActuales: []
+        contactosActuales: [],
+        id: parseInt(this.$route.params.id),
+        indice: Number
       }
     },
     created:function () {
       this.obtenerContactos()
-      // console.log(this.contactosActuales)
     },
     methods: {
       obtenerContactos() {
       // Obtener datos del localStorage
-        const contactos = JSON.parse(localStorage.getItem('contactos'))
-        const id = parseInt(this.$route.params.id)
-        
-        contactos.map((contacto, i) => {
-          if(contactos[i].id === id) {
-            this.contacto = contactos[i]
+        this.contactosActuales = JSON.parse(localStorage.getItem('contactos'))
+        this.contactosActuales.map((contacto, i) => {
+
+          if(this.contactosActuales[i].id === this.id) {
+            this.contacto = this.contactosActuales[i]
+            this.indice = i
           }
         })
 
-        this.contactosActuales = contactos
       },
-      editarContacto() {
-      // Editar contacto en la lista de contactos actual
-        
+      editarContacto(e) {
+      // Editar contacto en la lista de contactos actual y guardar en el LS
+        e.preventDefault()
+
+        this.contactosActuales.splice(this.indice, 1, this.contacto)
+        this.actualizarContactos()
+        this.$router.back()
+      },
+      actualizarContactos() {
+
+        localStorage.setItem('contactos', JSON.stringify(this.contactosActuales))
       }
     }
   }

@@ -1,30 +1,11 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/crear">Crear</router-link> |
-    <router-link to="/listar">Listar</router-link> |
-    <router-link to="/editar/:id">Editar</router-link> 
-  </div>
+  <header class="mb-8 shadow-xl bg-gray-700 text-white font-bold">
+    <nav class="container py-4 lg:px-0 mx-auto flex justify-between items-center">
+      <router-link to="/" class="font-indie"><h1>ContactsApp</h1></router-link>
+      <router-link to="/crear">
+        <img src="../public/icons/icon-plus.svg" alt="Agregar contacto nuevo"/>
+      </router-link>
+    </nav>
+  </header>
   <router-view/>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-active {
-  color: #42b983;
-}
-</style>

@@ -57,7 +57,7 @@
         }
 
         // Insertar en el localStorage sin sobreescribir contactos antiguos
-        if(!contactosActuales) {
+        if(!contactosActuales || contactosActuales.length == 0) {
           const contactos = [{...userToSend, id: 1}]
           localStorage.setItem('contactos', JSON.stringify(contactos))
         } else {
@@ -69,7 +69,7 @@
           localStorage.setItem('contactos', JSON.stringify(toSend))
         }
 
-        this.$router.push("listar")
+        this.$router.back()
       }
     }
   }

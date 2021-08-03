@@ -1,16 +1,28 @@
 <template>
-  <div>
-    <h1>Contactos</h1>
+  <div class="container px-4 lg:px-0 mx-auto">
+    <h2 class="text-center">Contactos</h2>
     <div id="contactosContainer" v-for="contacto in contactosActuales" :key="contacto.id">
       <ul>
         <li>
           <p>{{ `${contacto.nombre} ${contacto.apellido}` }}</p>
           <p>{{ contacto.mail }}</p>
-          <p>{{ contacto.id }}</p>
+          <a :href="'https://linkedin.com/in/' + contacto.linkedin" target="_blank">
+            <img src="../../../public/icons/linkedin-icon.svg"/>
+          </a>
+          <a :href="'https://twitter.com/' + contacto.twitter" target="_blank">
+            <img src="../../../public/icons/twitter-icon.svg"/>
+          </a>
+          <a :href="'https://github.com/' + contacto.github" target="_blank">
+            <img src="../../../public/icons/github-icon.svg"/>
+          </a>
           <router-link
             :to="{name:'Editar', params:{id: contacto.id}}"
+            class="transition-colors px-5 py-3 mx-4 inline-block border-md bg-purple-500 rounded-xl text-white font-bold shadow-lg hover:bg-purple-600 focus:bg-purple-600 focus:ring-2 focus:ring-purple-700 focus:outline-none"
           >Editar</router-link>
-          <button v-on:click="borrarContacto(contacto.id)">Borrar</button>
+          <button 
+            v-on:click="borrarContacto(contacto.id)"
+            class="transition-colors px-5 py-3 mx-4 inline-block border-md bg-red-500 rounded-xl text-white font-bold shadow-lg hover:bg-red-600 focus:bg-red-600 focus:ring-2 focus:ring-red-700 focus:outline-none"
+          >Borrar</button>
         </li>
       </ul>
     </div>
@@ -28,11 +40,9 @@
       this.obtenerContactos()
     },
     methods: {
-      // Obtener datos del localStorage
       obtenerContactos() {
-
-        const contactos = JSON.parse(localStorage.getItem('contactos'))
-        this.contactosActuales = contactos
+      // Obtener datos del localStorage
+        this.contactosActuales = JSON.parse(localStorage.getItem('contactos'))
       },
       borrarContacto(id) {
 

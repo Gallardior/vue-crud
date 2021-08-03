@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Listar from '../components/Listar/Listar.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Listar',
+    component: Listar
   },
   {
     path: '/about',
@@ -19,11 +19,6 @@ const routes = [
     path: '/crear',
     name: 'Crear',
     component: () => import('../components/Crear/Crear.vue')
-  },
-  {
-    path: '/listar',
-    name: 'Listar',
-    component: () => import('../components/Listar/Listar.vue')
   },
   {
     path: '/editar/:id',
